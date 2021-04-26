@@ -1,4 +1,6 @@
 import 'package:devquiz/core/core.dart';
+import 'package:devquiz/widgets/score_card/score_card_widget.dart';
+
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends PreferredSize {
@@ -7,21 +9,53 @@ class AppBarWidget extends PreferredSize {
           preferredSize: Size.fromHeight(250.0),
           child: Container(
             height: 250.0,
-            decoration: BoxDecoration(
-              gradient: AppGradients.linear,
-            ),
-            child: Row(
+            child: Stack(
               children: [
-                Text('Olá, Johnny DEV'),
                 Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    image: DecorationImage(
-                      image: NetworkImage(
-                        'https://avatars.githubusercontent.com/u/48037003?s=400&u=22588baf8f046eed531e74ce7d1fc2672c7a0eda&v=4',
-                      ),
-                    ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0,
                   ),
+                  height: 161.0,
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                    gradient: AppGradients.linear,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text.rich(
+                        TextSpan(
+                          text: 'Olá, ',
+                          style: AppTextStyles.title,
+                          children: [
+                            TextSpan(
+                              text: 'Johnny DEV',
+                              style: AppTextStyles.titleBold,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 58.0,
+                        height: 58.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(
+                            image: NetworkImage(
+                              "https://avatars.githubusercontent.com/u/48037003?s=60&v=4",
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Align(
+                  alignment: Alignment(
+                    0.0,
+                    2.0,
+                  ),
+                  child: ScoreCardWidget(),
                 ),
               ],
             ),
